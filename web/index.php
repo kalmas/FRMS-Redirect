@@ -2,6 +2,18 @@
 require_once __DIR__.'/../vendor/autoload.php';
 
 $app = new Silex\Application();
+$app->register(new Igorw\Silex\ConfigServiceProvider(__DIR__ . '/../config.json'));
+
+
+$app['db'] = function($app) {
+	return new \FRMS\Db\Mssql(
+			$app['config']['db']['host'],
+			$app['config']['db']['database'],
+			$app['config']['db']['user'],
+			$app['config']['db']['pass']
+	);
+};
+
 
 //Debug messages
 $app['debug'] = FALSE;
