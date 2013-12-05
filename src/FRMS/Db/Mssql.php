@@ -1,6 +1,12 @@
 <?php
 namespace FRMS\Db;
 
+
+/**
+ * Just a wrapper class for calling mssql_* functions
+ * @author Kyle.Almas
+ *
+ */
 class Mssql {
 	
 	private $host;
@@ -9,6 +15,12 @@ class Mssql {
 	private $pass;
 	private $connection = null;
 	
+	/**
+	 * @param string $host
+	 * @param string $database
+	 * @param string $user
+	 * @param string $pass
+	 */
 	public function __construct($host, $database, $user, $pass) {
 		$this->host = $host;
 		$this->database = $database;
@@ -16,6 +28,11 @@ class Mssql {
 		$this->pass = $pass;
 	}
 	
+	/**
+	 * Establish a connection
+	 * @throws \Exception
+	 * @return resource
+	 */
 	private function getConnection() {
 		if(is_null($this->connection)) {
 			$conn = mssql_pconnect($this->host, $this->user, $this->pass);
@@ -30,7 +47,7 @@ class Mssql {
 	}
 	
 	/**
-	 * Execute stored procedure
+	 * Execute stored procedure and return result array
 	 * @param string $procName
 	 * @param array $names
 	 * @param array $types
