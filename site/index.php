@@ -15,7 +15,7 @@ $app['db'] = function($app) {
 };
 
 
-//Debug messages
+// Debug messages
 $app['debug'] = FALSE;
 
 $app->get('/', function() use($app) {
@@ -41,6 +41,9 @@ $app->get('/aboutus.php', function() use($app) {
 $app->get('/contactus.php', function() use($app) {
 	return $app->redirect('http://www.forrent.com/es/contactus.php',301);
 });
+
+$app->mount('/detail', new FRMS\ControllerProvider\ProfileRedirect());
+$app->mount('/browse', new FRMS\ControllerProvider\BrowseRedirect());
 
 $app->run();
 ?>
