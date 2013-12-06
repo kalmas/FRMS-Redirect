@@ -1,0 +1,8 @@
+<phpunit bootstrap="../../bootstrap.php" colors="true" stopOnError="false">
+	<testsuites>
+		<testsuite name="Unit Tests">
+			<directory>./</directory>
+			<!-- <exclude>./</exclude> -->
+		</testsuite>
+	</testsuites>
+</phpunit>
