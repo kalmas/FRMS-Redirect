@@ -62,7 +62,7 @@ class Mssql {
 			mssql_bind($stmt, $names[$i], $values[$i], $types[$i]);
 		}
 		
-		$result = mssql_execute($stmt);
+		$result = @mssql_execute($stmt);
 		mssql_free_statement($stmt);
 		return $this->translateResultObjToArray($result);
 	}
