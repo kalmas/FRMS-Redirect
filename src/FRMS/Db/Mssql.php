@@ -64,6 +64,7 @@ class Mssql {
 		
 		$result = @mssql_execute($stmt);
 		mssql_free_statement($stmt);
+		
 		return $this->translateResultObjToArray($result);
 	}
 	
@@ -76,7 +77,7 @@ class Mssql {
 	 */
 	public function translateResultObjToArray($result) {
 		$data = array();
-		if(!is_resource($result)){
+		if(!is_resource($result)) {
 			return false;
 		}
 		
@@ -85,6 +86,7 @@ class Mssql {
 		}
 		
 		mssql_free_result($result);
+		
 		return $data;
 	}
 

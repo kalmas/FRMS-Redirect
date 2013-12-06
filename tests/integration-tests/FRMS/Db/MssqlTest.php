@@ -24,7 +24,7 @@ class MssqlTest extends PHPUnit_Framework_TestCase {
 		$this->assertCount(1, $return);
 		$this->assertCount(2, $return[0]);
 		$this->assertEquals(1005116, $return[0]['Site_Id']);
-		$this->assertEquals('willows', $return[0]['PRC_Vanity_Name']);
+		$this->assertEquals('thewillows-brooklynpark', $return[0]['Vanity_URL']);
 	}
 	
 	public function test_executeProc_nonexistant_record() {
