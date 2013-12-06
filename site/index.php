@@ -1,11 +1,13 @@
 <?php
+use Silex\Application;
 require_once __DIR__ . '/../bootstrap.php';
 
 $app = new Silex\Application();
 $app->register(new Igorw\Silex\ConfigServiceProvider(__DIR__ . '/../config.json'));
+$app->register(new Silex\Provider\ValidatorServiceProvider());
 
 
-$app['db'] = function($app) {
+$app['db'] = function(Application $app) {
 	return new \FRMS\Db\Mssql(
 			$app['config']['db']['host'],
 			$app['config']['db']['database'],
@@ -13,6 +15,13 @@ $app['db'] = function($app) {
 			$app['config']['db']['pass']
 	);
 };
+$app['site_id_translator'] = function(Application $app) {
+	return new \FRMS\ValueTranslator\PrcToFrc\SiteIdTranslator($app['db']);
+};
+$app['redirector'] = function() {
+	return new \FRMS\RedirectHelper();
+};
+
 
 
 // Debug messages

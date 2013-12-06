@@ -6,6 +6,7 @@
 		}
 	],
 	"require" : {
+		"symfony/validator" : "~2.3",
 		"igorw/config-service-provider" : "~1",
 		"silex/silex" : "~1"
 	},
